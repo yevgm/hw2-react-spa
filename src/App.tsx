@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import { Header } from './components/header';
+import { PageLayout } from './components/Pages/PageLayout';
+import { Pokemon } from './types';
 
 function App() {
+
+    const [characters, setCharacters] = React.useState<Pokemon[]>([]);
+    const [page, setPage] = React.useState<number>(0);
+
+
+    const changePage = (newPage: number) => {
+        setPage(newPage);
+        // Think about validations... TODO remove
+    }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header></Header>
+        <PageLayout page={page} characters={characters} setCharacters={setCharacters} />
     </div>
   );
 }
