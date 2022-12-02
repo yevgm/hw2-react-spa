@@ -8,11 +8,13 @@ import {PokemonInfo} from "./PokemonInfo";
 export interface YourPokemonsPageProps {
     characters: Pokemon[];
     setCharacters: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+    setPage(newPage: number): void;
 }
 
 export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
      characters,
      setCharacters,
+     setPage
  }) => {
 
     const [chosenPokemon, setChosenPokemon] = React.useState<Pokemon>();
@@ -98,7 +100,7 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
             <div className="vl"></div>
             <div className="page-col-right">
                 <div className='page-rightside'>
-                    <PokemonInfo chosenPokemon={chosenPokemon}></PokemonInfo>
+                    <PokemonInfo chosenPokemon={chosenPokemon} setPage={setPage}></PokemonInfo>
                 </div>
             </div>
         </div>

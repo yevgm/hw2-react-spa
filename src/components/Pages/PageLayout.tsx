@@ -9,17 +9,19 @@ export interface PageLayoutProps {
     page: number;
     characters: Pokemon[];
     setCharacters: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+    setPage(newPage: number): void;
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
       page,
       characters,
       setCharacters,
+      setPage,
 }) => {
 
     switch(page) {
         case 0:
-            return <YourPokemons characters={characters} setCharacters={setCharacters} />
+            return <YourPokemons characters={characters} setCharacters={setCharacters} setPage={setPage}/>
         case 1:
             return <Battle />
         default:

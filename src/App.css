@@ -1,26 +1,18 @@
 .App {
   text-align: center;
 }
-
-/*.App-logo {*/
-/*  height: 40vmin;*/
-/*  pointer-events: none;*/
-/*}*/
-
-.App-header {
-  /*min-height: 10vh;*/
+.header-container{
   display: flex;
   flex-direction: column;
   align-items: start;
-  /*justify-content: left;*/
-  font-size: calc(10px + 2vmin);
-  color: white;
-  margin: 1em;
 }
 
-/*.App-link {*/
-/*  color: #61dafb;*/
-/*}*/
+.App-header {
+  font-size: 2em;
+  color: white;
+  margin: 1em;
+  /*border-left: 0.1em solid #1de9b6;*/
+}
 
 /* YourPokemon */
 .page-col{
@@ -55,10 +47,12 @@
 
 
 .page-rightside {
+  display: flex;
+  flex-direction: column;
   text-align: left;
   position: fixed;
   right: 0;
-  left: 54%;
+  left: 52%;
   width: 50%;
   height: 100%;
   z-index: 1;
@@ -68,7 +62,7 @@
 }
 
 .vl {
-  border-left: 0.1em solid #1eb3cb;
+  border-left: 0.1em solid #1de9b6;
   height: 100%;
   position: absolute;
   overflow-y:auto;
@@ -92,11 +86,47 @@
   /*box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);*/
   height: 7em;
   width: 7em;
-  border: 0.1em solid #1eb3cb;
+  border: 0.1em solid #1de9b6;
   border-radius: 1em;
   align-items: center;
+  cursor: pointer;
 }
 
-.pokemon-image {
-  text-align: center;
+/*Pokemon Info*/
+.pokemon-display-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+
+.pokemon-display-item {
+  text-align: center;
+  width: 7em;
+  height: 7em;
+  /*margin: 0 1em;*/
+  margin-right: 5em;
+  border: 0.1em solid #1de9b6;
+  border-radius: 1em;
+}
+
+.pokemon-display-header{
+  text-align: center;
+  margin: 0 5px;
+}
+
+.nav-button {
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 10em;
+  padding: 2em 5em;
+  border: 0;
+  color: white;
+  background: #1de9b6;
+  line-height: 1.15;
+  font-size: 20px;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+

@@ -5,10 +5,12 @@ import { PokemonCard } from './PokemonCard';
 
 export interface PokemonInfoProps {
     chosenPokemon: Pokemon|undefined,
+    setPage(newPage: number): void;
 }
 
 export const PokemonInfo: React.FC<PokemonInfoProps> = ({
     chosenPokemon,
+    setPage
 }) => {
     let pokemon_name;
     if (chosenPokemon){
@@ -20,7 +22,10 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
         <div className='info-container'>
             {   chosenPokemon !== undefined ?
                 <>
-                    <p className={'big-name'}>{pokemon_name}</p>
+                    <div className={'pokemon-display-box'}>
+                        <p className={'big-name pokemon-display-header'}>{pokemon_name}</p>
+                        <img className='pokemon-image pokemon-display-item' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
+                    </div>
                     <ul>
                         <li>Type: {chosenPokemon.type}</li>
                         <li>Height: {chosenPokemon.height}</li>
@@ -35,8 +40,9 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                         <li>Special Defence: {chosenPokemon.special_defense}</li>
                         <li>Speed: {chosenPokemon.speed}</li>
                     </ul>
-
+                    <button className='nav-button' onClick={() => setPage(1)}>I Choose You!</button>
                 </>
+
                 :
                 <h2 className={'no-left'}> No Pokemon selected! </h2>
             }
