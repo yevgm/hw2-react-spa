@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import '../../../App.css';
 import { Pokemon } from '../../../types';
 import { PokemonContainer } from './PokemonContainer';
+import {PokemonInfo} from "./PokemonInfo";
 
 
 export interface YourPokemonsPageProps {
@@ -13,6 +14,8 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
      characters,
      setCharacters,
  }) => {
+
+    const [chosenPokemon, setChosenPokemon] = React.useState<Pokemon>();
 
     // Draw random Pokemon from API
     const addRandomCharacter = async() => {
@@ -28,17 +31,43 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
 
         let newCharacter: Pokemon = {
             name: newCharacterFromApi.name,
+            type: '',
+            height: newCharacterFromApi.height,
+            weight: newCharacterFromApi.weight,
+            hp: '',
+            attack: '',
+            defense: '',
+            special_attack: '',
+            special_defense: '',
+            speed: '',
             image: newCharacterFromApi.sprites.front_default,
         }
+        for (let type of newCharacterFromApi.types) {
+            newCharacter.type = type.type.name;
+            break  // take only the first type
+        }
 
+        for (let stat of newCharacterFromApi.stats) {
+            if (stat.stat.name === 'hp'){
+                newCharacter.hp = stat.base_stat
+            }
+            else if (stat.stat.name === 'attack'){
+                newCharacter.attack = stat.base_stat
+            }
+            else if (stat.stat.name === 'defense'){
+                newCharacter.defense = stat.base_stat
+            }
+            else if (stat.stat.name === 'special-attack'){
+                newCharacter.special_attack = stat.base_stat
+            }
+            else if (stat.stat.name === 'special-defense'){
+                newCharacter.special_defense = stat.base_stat
+            }
+            else if (stat.stat.name === 'speed'){
+                newCharacter.speed = stat.base_stat
+            }
 
-        // if (newCharacterFromApi && newCharacterFromApi?.name !== '') {
-        //     newCharacter = {
-        //         name: newCharacterFromApi.name,
-        //         image: newCharacterFromApi.image,
-        //     }
-        //     const newCharactersList = [...characters, newCharacter];
-        //     setCharacters(newCharactersList);
+        }
 
         return newCharacter
     }
@@ -63,18 +92,13 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
         <div className='page-container'>
             <div className="page-col-left">
                 <div className='page-leftside'>
-                    <PokemonContainer characters={characters}></PokemonContainer>
+                    <PokemonContainer characters={characters} setChosenPokemon={setChosenPokemon}></PokemonContainer>
                 </div>
             </div>
             <div className="vl"></div>
             <div className="page-col-right">
                 <div className='page-rightside'>
-                    <h2> You have no Pokemons left! </h2>
-                    <h2> You have no Pokemons left! </h2>
-                    <h2> You have no Pokemons left! </h2>
-                    <h2> You have no Pokemons left! </h2>
-                    <h2> You have no Pokemons left! </h2>
-                    <h2> You have no Pokemons left! </h2>
+                    <PokemonInfo chosenPokemon={chosenPokemon}></PokemonInfo>
                 </div>
             </div>
         </div>

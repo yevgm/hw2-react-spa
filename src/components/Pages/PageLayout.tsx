@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import { Pokemon } from '../../types';
-import { YourPokemons } from './YourPokemons/yourPokemons';
+import { YourPokemons } from './YourPokemons/YourPokemons';
 import { Battle } from './Battle/battle';
 
 

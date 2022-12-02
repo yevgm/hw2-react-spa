@@ -1,23 +1,25 @@
 import React from 'react';
+import { SetStateAction } from 'react';
 import '../../../App.css';
 import { Pokemon } from '../../../types';
-import { CharacterCard } from './CharacterCard';
+import { PokemonCard } from './PokemonCard';
 
 export interface PokemonContainerProps {
     characters: Pokemon[],
+    setChosenPokemon: React.Dispatch<SetStateAction<Pokemon|undefined>>
 }
 
 export const PokemonContainer: React.FC<PokemonContainerProps> = ({
-    characters,
+    characters, setChosenPokemon
 }) => {
 
     return (
         <div className='cards-container'>
             {   characters.length > 0 ?
                 characters.map(character =>
-                    <CharacterCard key={Math.random()} character={character}/>) :
+                    <PokemonCard key={Math.random()} character={character} setChosenPokemon={setChosenPokemon}/>) :
 
-                <h2> You have no Pokemons left! </h2>
+                <h2 className={'no-left'}> You have no Pokemons left! </h2>
             }
         </div>
     );
