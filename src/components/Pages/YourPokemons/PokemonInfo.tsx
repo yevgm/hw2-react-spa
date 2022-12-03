@@ -5,12 +5,12 @@ import { PokemonCard } from './PokemonCard';
 
 export interface PokemonInfoProps {
     chosenPokemon: Pokemon|undefined,
-    setPage(newPage: number): void;
+    setBattlePokemon(newPage: Pokemon): void;
 }
 
 export const PokemonInfo: React.FC<PokemonInfoProps> = ({
     chosenPokemon,
-    setPage
+    setBattlePokemon
 }) => {
     let pokemon_name;
     if (chosenPokemon){
@@ -39,10 +39,9 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                         <li>Special Attack: {chosenPokemon.special_attack}</li>
                         <li>Special Defence: {chosenPokemon.special_defense}</li>
                         <li>Speed: {chosenPokemon.speed}</li>
-                        {/*{chosenPokemon.moves.map(move =><li key={Math.random()}>move: {move.name} {move.power}</li>)} TODO:remove this debug*/}
 
                     </ul>
-                    <button className='nav-button' onClick={() => setPage(1)}>I Choose You!</button>
+                    <button className='nav-button' onClick={() => setBattlePokemon(chosenPokemon)}>I Choose You!</button>
                 </>
 
                 :

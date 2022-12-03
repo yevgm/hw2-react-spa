@@ -130,3 +130,44 @@
   margin-right: 12.5%;
 }
 
+/*Battle*/
+.battle-container{
+  display: flex;
+  /*flex-wrap: wrap;*/
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 5em;
+}
+
+.battle-item{
+  border: 0.1em solid #1de9b6;
+  display: inline-flex;
+  /*flex-wrap: wrap;*/
+  /*flex-direction: row;*/
+  /*justify-content: space-between;*/
+  /*margin-top: 2em;*/
+  /*margin-bottom: 2em;*/
+}
+
+.battle-info-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0.1em solid #1de9b6;
+  border-radius: 1em;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.pokemon-move-box{
+  border: 0.1em solid #1de9b6;
+  width: 30%;
+  margin: 1em;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
