@@ -19,7 +19,7 @@ export const PokemonContainer: React.FC<PokemonContainerProps> = ({
                 characters.map(character =>
                     <PokemonCard key={Math.random()} character={character} setChosenPokemon={setChosenPokemon}/>) :
 
-                <h2 className={'no-left'}> You have no Pokemons left! </h2>
+                <h2 className={'no-left'}> You have lost all your Pokemons :(<br/> Refresh for a new game...</h2>
             }
         </div>
     );

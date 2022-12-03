@@ -12,12 +12,11 @@ function App() {
 
     const changePage = (newPage: number) => {
         setPage(newPage);
-        // Think about validations... TODO remove??
     }
 
   return (
     <div className="App">
-        <Header></Header>
+        <Header page={page} characters={characters}></Header>
         <PageLayout page={page} characters={characters} setCharacters={setCharacters} setPage={changePage} />
     </div>
   );

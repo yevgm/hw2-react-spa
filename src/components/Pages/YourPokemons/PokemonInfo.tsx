@@ -39,6 +39,8 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                         <li>Special Attack: {chosenPokemon.special_attack}</li>
                         <li>Special Defence: {chosenPokemon.special_defense}</li>
                         <li>Speed: {chosenPokemon.speed}</li>
+                        {/*{chosenPokemon.moves.map(move =><li key={Math.random()}>move: {move.name} {move.power}</li>)} TODO:remove this debug*/}
+
                     </ul>
                     <button className='nav-button' onClick={() => setPage(1)}>I Choose You!</button>
                 </>

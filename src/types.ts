@@ -9,5 +9,11 @@ export interface Pokemon {
     special_attack: string;
     special_defense: string;
     speed: string;
+    moves: PokemonMove[];
     image?: string;
+}
+
+export interface PokemonMove{
+    name: string;
+    power: number;
 }
