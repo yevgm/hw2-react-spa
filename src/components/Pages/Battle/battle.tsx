@@ -4,6 +4,7 @@ import {Pokemon, PokemonMove} from "../../../types";
 import {addRandomPokemon} from "../YourPokemons/addRandomPokemon";
 import {PokemonBattleDesc} from "./PokemonBattleDesc";
 import {MakeBattle} from "./MakeBattle";
+import {NameToUpper} from "../../../utils";
 
 export interface BattleProps {
     chosenPokemon: Pokemon|undefined,
@@ -14,7 +15,7 @@ export const Battle: React.FC<BattleProps> = ({
 
     const [fetchingData, setFetchingData ] = React.useState(true);
     const [OpponentPokemon, setOpponentPokemon] = React.useState<Pokemon>();
-    const [chosenMove, setchosenMove ] = React.useState<PokemonMove>();
+    const [chosenMove, setchosenMove] = React.useState<PokemonMove>();
 
     // GET 1 random Opponent Pokemon at the beginning of the battle
     useEffect(() => {
@@ -29,21 +30,27 @@ export const Battle: React.FC<BattleProps> = ({
     }, []);
 
     return (
-        <div className={'battle-container'}>
+        <div className={'battle-container page-col'}>
             {OpponentPokemon && !fetchingData ?
                 <div className={'battle-item'}>
                     <PokemonBattleDesc chosenPokemon={OpponentPokemon} setchosenMove={undefined}></PokemonBattleDesc>
-                    <img className='pokemon-image pokemon-display-item' src={OpponentPokemon.image} alt={OpponentPokemon.name} width="150" height="150" />
+                    <div className='pokemon-display-item'>
+                        <img className='pokemon-image pokemon-display-item' src={OpponentPokemon.image} alt={OpponentPokemon.name} width="150" height="150" />
+                        <h4 className={'whiteColor'}>{NameToUpper(OpponentPokemon.name)}</h4>
+                    </div>
                 </div>
                 : 'Loading...'
             }
 
-            <MakeBattle></MakeBattle>
+            <MakeBattle chosenMove={chosenMove} chosenPokemon={chosenPokemon} OpponentPokemon={OpponentPokemon} setchosenMove={setchosenMove}></MakeBattle>
 
 
             {chosenPokemon ?
                 <div className={'battle-item'}>
-                    <img className='pokemon-image pokemon-display-item' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
+                    <div className='pokemon-display-item'>
+                        <img className='pokemon-image pokemon-display-item' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
+                        <h4 className={'whiteColor'}>{NameToUpper(chosenPokemon.name)}</h4>
+                    </div>
                     <PokemonBattleDesc chosenPokemon={chosenPokemon} setchosenMove={setchosenMove}></PokemonBattleDesc>
                 </div>
                 : 'Loading...'

@@ -2,6 +2,7 @@ import React from 'react';
 import '../../../App.css';
 import { Pokemon } from '../../../types';
 import { PokemonCard } from './PokemonCard';
+import {NameToUpper} from "../../../utils";
 
 export interface PokemonInfoProps {
     chosenPokemon: Pokemon|undefined,
@@ -12,10 +13,10 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
     chosenPokemon,
     setBattlePokemon
 }) => {
+
     let pokemon_name;
-    if (chosenPokemon){
-        pokemon_name = chosenPokemon.name
-        pokemon_name = pokemon_name.charAt(0).toUpperCase() + pokemon_name.slice(1);
+    if (chosenPokemon) {
+        pokemon_name = NameToUpper(chosenPokemon.name);
     }
 
     return (
@@ -24,7 +25,7 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                 <>
                     <div className={'pokemon-display-box'}>
                         <p className={'big-name pokemon-display-header'}>{pokemon_name}</p>
-                        <img className='pokemon-image pokemon-display-item' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
+                        <img className='pokemon-image pokemon-display-item right-margin' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
                     </div>
                     <ul>
                         <li>Type: {chosenPokemon.type}</li>

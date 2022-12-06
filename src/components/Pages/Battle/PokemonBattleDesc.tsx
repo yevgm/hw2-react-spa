@@ -10,11 +10,11 @@ export const PokemonBattleDesc: React.FC<PokemonBattleDescProps> = ({
     chosenPokemon,
     setchosenMove
 }) => {
-    let pokemon_name;
-    if (chosenPokemon){
-        pokemon_name = chosenPokemon.name
-        pokemon_name = pokemon_name.charAt(0).toUpperCase() + pokemon_name.slice(1);
-    }
+    // let pokemon_name;
+    // if (chosenPokemon){
+    //     pokemon_name = chosenPokemon.name
+    //     pokemon_name = pokemon_name.charAt(0).toUpperCase() + pokemon_name.slice(1);
+    // }
 
     const handleMoveClick = (move: PokemonMove) => {
         if (setchosenMove){
@@ -33,7 +33,7 @@ export const PokemonBattleDesc: React.FC<PokemonBattleDescProps> = ({
         <div className='battle-info-container'>
             {
                 chosenPokemon.moves.map(move =>
-                    <div className={'pokemon-move-box'}>
+                    <div className={'pokemon-move-box'} key={Math.random()}>
                         <p className={SetClickable()} onClick={() => handleMoveClick(move)}>{move.name} ({move.power ? move.power : '0'})</p>
                     </div>
                 )
