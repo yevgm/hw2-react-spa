@@ -7,15 +7,46 @@ import {MakeBattle} from "./MakeBattle";
 import {NameToUpper} from "../../../utils";
 
 export interface BattleProps {
-    chosenPokemon: Pokemon|undefined,
+    BattlePokemon: Pokemon|undefined,
+    changePage(page:number): void,
+    characters: Pokemon[];
+    setCharacters: React.Dispatch<React.SetStateAction<Pokemon[]>>;
+    setBattlePokemon(chosenPokemon: Pokemon|undefined): void;
 }
+
+
 export const Battle: React.FC<BattleProps> = ({
-    chosenPokemon,
+      BattlePokemon,
+      changePage,
+      characters,
+      setCharacters,
+      setBattlePokemon
 }) => {
 
     const [fetchingData, setFetchingData ] = React.useState(true);
     const [OpponentPokemon, setOpponentPokemon] = React.useState<Pokemon>();
     const [chosenMove, setchosenMove] = React.useState<PokemonMove>();
+
+    function endBattle(result: string, objectivePokemon: Pokemon){
+        if (result === 'player'){
+            // player won the Pokemon
+            const newCharactersList = [...characters, objectivePokemon];
+            setCharacters(newCharactersList);
+            setchosenMove(undefined);
+            setBattlePokemon(undefined);
+            setOpponentPokemon(undefined)
+        }
+        else if (result === 'bot'){
+            // Bot won the Pokemon
+            const newCharactersList = characters.filter((pokemon) => pokemon !== objectivePokemon);
+            setCharacters(newCharactersList);
+            setchosenMove(undefined);
+            setBattlePokemon(undefined);
+            setOpponentPokemon(undefined)
+        }
+
+        changePage(0)
+    }
 
     // GET 1 random Opponent Pokemon at the beginning of the battle
     useEffect(() => {
@@ -30,28 +61,37 @@ export const Battle: React.FC<BattleProps> = ({
     }, []);
 
     return (
-        <div className={'battle-container page-col'}>
+        <div className={'battle-container page-col whiteColor'}>
             {OpponentPokemon && !fetchingData ?
                 <div className={'battle-item'}>
-                    <PokemonBattleDesc chosenPokemon={OpponentPokemon} setchosenMove={undefined}></PokemonBattleDesc>
-                    <div className='pokemon-display-item'>
-                        <img className='pokemon-image pokemon-display-item' src={OpponentPokemon.image} alt={OpponentPokemon.name} width="150" height="150" />
-                        <h4 className={'whiteColor'}>{NameToUpper(OpponentPokemon.name)}</h4>
+                    <div className={'whiteColor player-name'}>
+                        <h1 className={'top-margin'}>PC's Pokemon:</h1>
+                    </div>
+                    <PokemonBattleDesc chosenPokemon={OpponentPokemon} setchosenMove={undefined} fetchingData={fetchingData}></PokemonBattleDesc>
+                    <div className='pokemon-display-item-name'>
+                        {OpponentPokemon.image? <img className='pokemon-display-item box-margin margin' src={OpponentPokemon.image} alt={OpponentPokemon.name} width="150" height="150" />: null}
+                        <h3 className={'whiteColor margin'}>{NameToUpper(OpponentPokemon.name)}</h3>
                     </div>
                 </div>
                 : 'Loading...'
             }
-
-            <MakeBattle chosenMove={chosenMove} chosenPokemon={chosenPokemon} OpponentPokemon={OpponentPokemon} setchosenMove={setchosenMove}></MakeBattle>
-
-
-            {chosenPokemon ?
+            <MakeBattle
+                chosenMove={chosenMove}
+                chosenPokemon={BattlePokemon}
+                OpponentPokemon={OpponentPokemon}
+                setchosenMove={setchosenMove}
+                endBattle={endBattle}
+            />
+            {BattlePokemon ?
                 <div className={'battle-item'}>
-                    <div className='pokemon-display-item'>
-                        <img className='pokemon-image pokemon-display-item' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
-                        <h4 className={'whiteColor'}>{NameToUpper(chosenPokemon.name)}</h4>
+                    <div className={'whiteColor player-name'}>
+                        <h1 className={'top-margin'}>Your Pokemon:</h1>
                     </div>
-                    <PokemonBattleDesc chosenPokemon={chosenPokemon} setchosenMove={setchosenMove}></PokemonBattleDesc>
+                    <div className='pokemon-display-item-name'>
+                        <h3 className={'whiteColor margin'}>{NameToUpper(BattlePokemon.name)}</h3>
+                        {BattlePokemon.image? <img className='pokemon-display-item margin' src={BattlePokemon.image} alt={BattlePokemon.name} width="150" height="150" />: null}
+                    </div>
+                    <PokemonBattleDesc chosenPokemon={BattlePokemon} setchosenMove={setchosenMove} fetchingData={fetchingData}></PokemonBattleDesc>
                 </div>
                 : 'Loading...'
             }

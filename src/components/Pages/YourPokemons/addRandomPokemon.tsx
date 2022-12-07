@@ -3,7 +3,7 @@ import {Pokemon} from "../../../types";
 import {ShuffleArray} from "../../../utils";
 
 export const addRandomPokemon = async() => {
-    const randomNumber = Math.floor(Math.random() * 151);
+    const randomNumber = Math.ceil(Math.random() * 151);
     let newCharacterFromApi;
 
     // GET 1 random Pokemon

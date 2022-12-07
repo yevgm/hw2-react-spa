@@ -25,7 +25,8 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                 <>
                     <div className={'pokemon-display-box'}>
                         <p className={'big-name pokemon-display-header'}>{pokemon_name}</p>
-                        <img className='pokemon-image pokemon-display-item right-margin' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" />
+                        {chosenPokemon.image ? <img className='pokemon-image pokemon-display-item right-margin' src={chosenPokemon.image} alt={chosenPokemon.name} width="150" height="150" /> : null}
+
                     </div>
                     <ul>
                         <li>Type: {chosenPokemon.type}</li>
@@ -42,7 +43,7 @@ export const PokemonInfo: React.FC<PokemonInfoProps> = ({
                         <li>Speed: {chosenPokemon.speed}</li>
 
                     </ul>
-                    <button className='nav-button' onClick={() => setBattlePokemon(chosenPokemon)}>I Choose You!</button>
+                    <button className='nav-button click-hover' onClick={() => setBattlePokemon(chosenPokemon)}>I Choose You!</button>
                 </>
 
                 :

@@ -11,7 +11,6 @@
   font-size: 2em;
   color: white;
   margin: 1em;
-  /*border-left: 0.1em solid #1de9b6;*/
 }
 
 .clickable{
@@ -75,7 +74,6 @@
   position: absolute;
   overflow-y:auto;
   left: 50%;
-  /*margin-left: -3px;*/
   top: 0;
 }
 
@@ -91,7 +89,6 @@
 }
 
 .card {
-  /*box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);*/
   height: 7em;
   width: 7em;
   border: 0.1em solid #1de9b6;
@@ -111,9 +108,22 @@
   text-align: center;
   width: 7em;
   height: 7em;
-  /*margin: 0 1em;*/
-  border: 0.1em solid #1de9b6;
   border-radius: 1em;
+}
+
+.pokemon-display-item-name {
+  /*border: 0.1em solid #1de9b6;*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-top: 1.5em;
+  width: 30%;
+}
+
+.margin{
+  margin: 5%;
 }
 
 .right-margin{
@@ -143,33 +153,42 @@
 
 /*Battle*/
 .battle-container{
+  /*border: 0.1em solid #1de9b6;*/
   display: flex;
-  /*flex-wrap: wrap;*/
   flex-direction: column;
   justify-content: center;
-  /*margin: 5em;*/
   margin: auto;
   max-width: 50em;
 }
 
 .battle-item{
-  border: 0.1em solid #1de9b6;
+  /*border: 0.1em solid #1de9b6;*/
   display: inline-flex;
-  /*flex-wrap: wrap;*/
-  /*flex-direction: row;*/
-  /*justify-content: space-between;*/
-  /*margin-top: 2em;*/
-  /*margin-bottom: 2em;*/
+  justify-content: center;
   width: 50em;
   height: 10em;
 }
 
+.border{
+  border: 0.1em solid #1de9b6;
+}
+
+.player-name{
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+  width: 40%;
+}
+
+.top-margin{
+  margin-top: 16%;
+}
+
 .battle-info-container{
   display: flex;
-  /*flex-wrap: wrap;*/
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  border: 0.1em solid #1de9b6;
+  /*border: 0.1em solid #1de9b6;*/
   border-radius: 1em;
   color: white;
   font-size: 1em;
@@ -177,23 +196,83 @@
 }
 
 .pokemon-move-box{
-  border: 0.1em solid #1de9b6;
-  width: 8em;
-  margin: 1em;
+  /*border: 0.1em solid #1de9b6;*/
+  height: 20%;
+  margin-top: 0.2em;
 }
 
-.make-battle-container{
-  border: 0.1em solid #1de9b6;
+.make-battle-container-upper{
+  /*border: 0.1em solid #1de9b6;*/
   width: 50em;
-  /*margin: 3em;*/
-  /*margin-left: 12em;*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*flex-direction: column;*/
+  /*text-align: center;*/
+  margin-bottom: 5%;
+  margin-top: 5%;
   /*width: 100px;*/
   height: 17em;
 }
 
-/*.pokemon-image{*/
-/*  margin: 0;*/
-/*}*/
+.make-battle-container{
+  border: 0.1em solid #1de9b6;
+  border-style: dashed;
+  border-radius: 5em;
+  width: 50em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 17em;
+}
+
+.make-battle-container-item{
+  width: 15em;
+}
+
+.spread-column{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.enlarge-blocks{
+  margin-bottom: 2em;
+  margin-top: 2em ;
+}
+
+.left-text{
+  text-align: left;
+}
+
+.right-text{
+  text-align: right;
+}
+
+.bold-text{
+  font-weight: bold;
+}
+
+.click-hover:hover {
+  background: palegreen;
+}
+
+.click-hover-text:hover {
+  color: palegreen;
+}
+
+.player-results{
+  color: palegreen;
+}
+
+.timer{
+  text-align: center;
+  width: 100%;
+  height: 1em;
+}
+
+
 
 
 
