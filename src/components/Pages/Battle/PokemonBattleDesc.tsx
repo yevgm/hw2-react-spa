@@ -30,7 +30,7 @@ export const PokemonBattleDesc: React.FC<PokemonBattleDescProps> = ({
     return (
         <div className='battle-info-container'>
             {
-                chosenPokemon.moves.map(move =>
+                chosenPokemon.pokemon_moves.map(move =>
                     <div className={'pokemon-move-box'} key={Math.random()}>
                         <p className={SetClickable()} onClick={() => handleMoveClick(move)}>{NameToUpper(move.name)} ({move.power ? move.power : '0'})</p>
                     </div>

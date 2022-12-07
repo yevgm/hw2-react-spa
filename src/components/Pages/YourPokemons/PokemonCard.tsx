@@ -4,16 +4,24 @@ import { Pokemon } from '../../../types';
 
 export interface CharacterCardProps {
     character: Pokemon,
+    chosenPokemon: Pokemon|undefined,
     setChosenPokemon: React.Dispatch<SetStateAction<Pokemon|undefined>>
 }
 
 export const PokemonCard: React.FC<CharacterCardProps> = ({
     character,
+    chosenPokemon,
     setChosenPokemon
 }) => {
     const { name, image } = character;
     const SetPokemonInfo = () => {
-        setChosenPokemon(character)
+        if (chosenPokemon !== character){
+            setChosenPokemon(character)
+        }
+        else{
+            setChosenPokemon(undefined)
+        }
+
     }
 
     return (                    

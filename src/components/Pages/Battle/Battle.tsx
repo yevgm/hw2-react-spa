@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import '../../../App.css';
 import {Pokemon, PokemonMove} from "../../../types";
-import {addRandomPokemon} from "../YourPokemons/addRandomPokemon";
+import {addRandomPokemon, DrawRandomUniqueMoves} from "../YourPokemons/addRandomPokemon";
 import {PokemonBattleDesc} from "./PokemonBattleDesc";
 import {MakeBattle} from "./MakeBattle";
 import {NameToUpper} from "../../../utils";
@@ -49,16 +49,47 @@ export const Battle: React.FC<BattleProps> = ({
     }
 
     // GET 1 random Opponent Pokemon at the beginning of the battle
+    // and draw 4 random moves for both player's and opponent's pokemons
     useEffect(() => {
         const fetchData = async () => {
-            let promise = await addRandomPokemon()
-            setOpponentPokemon(promise)
-            setFetchingData(false);
+            if (BattlePokemon) {
+                let promise;
+                try {
+                    promise = await addRandomPokemon()
+                    await DrawRandomUniqueMoves(promise)
+                    await DrawRandomUniqueMoves(BattlePokemon)
+                } catch (e) {
+                    console.error(e);
+                }
+
+                setOpponentPokemon(promise)
+                setFetchingData(false);
+            }
         }
 
         fetchData();
 
     }, []);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         if (BattlePokemon){
+    //             // let chosenBattlePokemon:Pokemon = Object.assign({}, BattlePokemon);
+    //             try {
+    //                 await DrawRandomUniqueMoves(BattlePokemon)
+    //             } catch (e) {
+    //                 console.error(e);
+    //             }
+    //         }
+    //
+    //
+    //
+    //         setFetchingData(false);
+    //     }
+    //
+    //     fetchData();
+    //
+    // }, [BattlePokemon]);
 
     return (
         <div className={'battle-container page-col whiteColor'}>
@@ -82,7 +113,7 @@ export const Battle: React.FC<BattleProps> = ({
                 setchosenMove={setchosenMove}
                 endBattle={endBattle}
             />
-            {BattlePokemon ?
+            {BattlePokemon && !fetchingData ?
                 <div className={'battle-item'}>
                     <div className={'whiteColor player-name'}>
                         <h1 className={'top-margin'}>Your Pokemon:</h1>

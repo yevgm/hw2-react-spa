@@ -25,6 +25,7 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
                 <div className='page-leftside'>
                     <PokemonContainer
                         characters={characters}
+                        chosenPokemon={chosenPokemon}
                         setChosenPokemon={setChosenPokemon}
                         gameLoaded={gameLoaded}
                     />

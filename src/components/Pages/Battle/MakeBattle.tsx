@@ -20,13 +20,14 @@ export const MakeBattle: React.FC<MakeBattleProps> = ({
 
     const [winner, setwinner ] = React.useState<string>();
     const [results, setResults ] = React.useState<[string, string]>();
+    const [chosenMoveFlag, setChosenMoveFlag] = React.useState<boolean>(false);
     const [time, setTime] = React.useState<number>(4);
 
     useEffect(() => {
-        if (chosenMove && chosenPokemon && OpponentPokemon) {
+        if (!chosenMoveFlag && chosenMove && chosenPokemon && OpponentPokemon) {
             // Pick random opponent move
-            let rand_index = Math.min(Math.ceil(Math.random() * 4), OpponentPokemon.moves.length - 1);
-            let bot_move: PokemonMove = OpponentPokemon.moves[rand_index];
+            let rand_index = Math.min(Math.ceil(Math.random() * 4), OpponentPokemon.pokemon_moves.length - 1);
+            let bot_move: PokemonMove = OpponentPokemon.pokemon_moves[rand_index];
             // calculate TotalPower for both
             let player_tp: number = CalculateTotalPower(chosenMove, chosenPokemon, OpponentPokemon);
             let bot_tp: number = CalculateTotalPower(bot_move, OpponentPokemon, chosenPokemon);
@@ -37,6 +38,8 @@ export const MakeBattle: React.FC<MakeBattleProps> = ({
             let playerDisplayString: string = chosenMove.name + ' : ' + player_tp;
             let botDisplayString: string = bot_move.name + ' : ' + bot_tp;
             setResults([playerDisplayString, botDisplayString])
+            // Change state so no more moves are allowed
+            setChosenMoveFlag(true);
 
         }
     }, [chosenMove]);
@@ -77,9 +80,9 @@ export const MakeBattle: React.FC<MakeBattleProps> = ({
     const CalculateTotalPower = (chosenMove_:PokemonMove,
                                  chosenPokemon_:Pokemon,
                                  OpponentPokemon_:Pokemon) => {
-        let mp: number = chosenMove_?.power;
-        let pa: number = parseInt(chosenPokemon_?.attack);
-        let pd: number = parseInt(OpponentPokemon_?.defense);
+        let mp: number = chosenMove_.power
+        let pa: number = parseInt(chosenPokemon_.attack);
+        let pd: number = parseInt(OpponentPokemon_.defense);
         let tf: number = typeTable.getType(chosenPokemon_.type, OpponentPokemon_.type);
         return (mp + pa) * tf - pd;
     }
