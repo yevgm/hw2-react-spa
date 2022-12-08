@@ -2,15 +2,42 @@
   text-align: center;
 }
 .header-container{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+  display: inline-flex;
+  flex-direction: row;
+  /*align-items: start;*/
+  /*margin-bottom: 1em;*/
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  height: 20%;
 }
 
 .App-header {
-  font-size: 2em;
+  font-size: 1em;
   color: white;
   margin: 1em;
+  /*z-index: 1;*/
+  /*position: fixed;*/
+  /*display: block!important;*/
+}
+
+.nav-tab{
+  margin-right: 1em;
+}
+
+.refresh-button {
+  outline: none;
+  cursor: pointer;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 1vmin 1vmin;
+  border: 0;
+  color: white;
+  background: #1de9b6;
+  line-height: 1.15;
+  font-size: 0.7em;
 }
 
 .clickable{
@@ -43,14 +70,19 @@
 }
 
 .page-leftside {
-  width: 50%;
-  height: 100%;
-  left: 0;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  position: fixed;
-  padding-top: 5em;
+  border-right: 0.1em solid #1de9b6;
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  /*height: 100%;*/
+  /*left: 0;*/
+  float:left;
+  /*z-index: 1;*/
+  /*top: 0;*/
+  /*overflow-x: hidden;*/
+  /*position: fixed;*/
+  /*padding-top: 5em;*/
 }
 
 
@@ -58,19 +90,26 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  position: fixed;
-  right: 0;
-  left: 52%;
-  width: 50%;
+  float:right;
+  /*position: fixed;*/
+  /*right: 0;*/
+  /*left: 52%;*/
+  width: 45%;
   height: 100%;
-  z-index: 1;
-  top: 0;
+  /*z-index: 1;*/
+  /*top: 0;*/
   overflow-x: hidden;
-  padding-top: 2em;
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+.page-container{
+  /*z-index: 1;*/
 }
 
 .vl {
   border-left: 0.1em solid #1de9b6;
+  display: block;
   height: 100%;
   position: absolute;
   overflow-y:auto;
@@ -87,7 +126,7 @@
   align-items: baseline;
   flex-wrap: wrap;
   margin: 1em;
-  margin-top: 5vmin;
+  /*margin-top: 5vmin;*/
 }
 
 .card {

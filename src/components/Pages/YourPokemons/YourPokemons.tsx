@@ -31,7 +31,7 @@ export const YourPokemons: React.FC<YourPokemonsPageProps> = ({
                     />
                 </div>
             </div>
-            <div className="vl"></div>
+            {/*<div className="vl"></div>*/}
             <div className="page-col-right">
                 <div className='page-rightside'>
                     <PokemonInfo chosenPokemon={chosenPokemon} setBattlePokemon={setBattlePokemon}></PokemonInfo>

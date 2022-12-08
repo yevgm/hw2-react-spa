@@ -53,16 +53,21 @@ export const Battle: React.FC<BattleProps> = ({
     useEffect(() => {
         const fetchData = async () => {
             if (BattlePokemon) {
-                let promise;
+                let opponent_promise, opponent_moves_promise, moves_promise;
+                let promiseList: any = [];
                 try {
-                    promise = await addRandomPokemon()
-                    await DrawRandomUniqueMoves(promise)
-                    await DrawRandomUniqueMoves(BattlePokemon)
+                    opponent_promise = addRandomPokemon()
+                    moves_promise = DrawRandomUniqueMoves(BattlePokemon)
+                    promiseList = [opponent_promise, moves_promise];
+                    opponent_moves_promise =  DrawRandomUniqueMoves(await opponent_promise)
+                    promiseList = [...promiseList, opponent_moves_promise]
+                    await Promise.all(promiseList)
+
                 } catch (e) {
                     console.error(e);
                 }
 
-                setOpponentPokemon(promise)
+                setOpponentPokemon(await opponent_promise)
                 setFetchingData(false);
             }
         }
@@ -71,25 +76,6 @@ export const Battle: React.FC<BattleProps> = ({
 
     }, []);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         if (BattlePokemon){
-    //             // let chosenBattlePokemon:Pokemon = Object.assign({}, BattlePokemon);
-    //             try {
-    //                 await DrawRandomUniqueMoves(BattlePokemon)
-    //             } catch (e) {
-    //                 console.error(e);
-    //             }
-    //         }
-    //
-    //
-    //
-    //         setFetchingData(false);
-    //     }
-    //
-    //     fetchData();
-    //
-    // }, [BattlePokemon]);
 
     return (
         <div className={'battle-container page-col whiteColor'}>
