@@ -15,12 +15,12 @@ export const addRandomPokemon = async() => {
         console.error(e);
     }
 
-    // Create half-filled Pokemon object
+    // Create default Pokemon object
     let newCharacter: Pokemon = {
-        name: newCharacterFromApi.name,
+        name: newCharacterFromApi?.name ? newCharacterFromApi.name: 'pokemon',
         type: '',
-        height: newCharacterFromApi.height,
-        weight: newCharacterFromApi.weight,
+        height: newCharacterFromApi?.height <= 0 ? 1: newCharacterFromApi.height,
+        weight: newCharacterFromApi?.weight <= 0 ? 1: newCharacterFromApi.weight,
         hp: '',
         attack: '',
         defense: '',
